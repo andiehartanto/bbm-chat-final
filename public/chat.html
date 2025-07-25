@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat - BBM Lite</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+  <div class="max-w-3xl mx-auto py-10">
+    <div class="mb-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold">Halo, <span id="username"></span>! (PIN: <span id="pin"></span>)</h1>
+      <a href="/" class="text-red-500 hover:underline">Logout</a>
+    </div>
+    <div class="mb-4">
+      <input type="text" id="invitePin" placeholder="Invite PIN Teman" class="border px-4 py-2 rounded w-full">
+      <button onclick="alert('Fitur invite PIN teman coming soon...')" class="mt-2 bg-purple-600 text-white px-4 py-2 rounded">Invite</button>
+    </div>
+    <div id="chatbox" class="bg-white p-4 h-96 overflow-y-auto border rounded mb-4"></div>
+    <div class="flex space-x-2">
+      <input type="text" id="message" placeholder="Ketik pesan..." class="border px-4 py-2 rounded w-full">
+      <input type="file" id="attachment" class="hidden" onchange="sendAttachment(event)">
+      <button onclick="document.getElementById('attachment').click()" class="bg-gray-300 px-3 rounded">📎</button>
+      <button onclick="sendMessage()" class="bg-blue-600 text-white px-4 rounded">Kirim</button>
+    </div>
+  </div>
+  <script>
+    const username = sessionStorage.getItem('username');
+    const pin = sessionStorage.getItem('pin');
+    if (!username || !pin) location.href = '/login.html';
+    document.getElementById('username').textContent = username;
+    document.getElementById('pin').textContent = pin;
+
+    function sendMessage() {
+      const msg = document.getElementById('message').value;
+      if (!msg) return;
+      const div = document.createElement('div');
+      div.textContent = username + ': ' + msg;
+      document.getElementById('chatbox').appendChild(div);
+      document.getElementById('message').value = '';
+    }
+
+    function sendAttachment(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const div = document.createElement('div');
+        div.innerHTML = username + ': <i>Lampiran:</i> ' + file.name;
+        document.getElementById('chatbox').appendChild(div);
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register - BBM Lite</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-purple-100 to-pink-200 min-h-screen flex items-center justify-center">
+  <form class="bg-white p-8 rounded-xl shadow-md w-96" method="POST" action="/register">
+    <h2 class="text-2xl font-bold mb-6 text-center">Daftar Akun</h2>
+    <input name="username" required placeholder="Username" class="w-full mb-4 px-4 py-2 border rounded">
+    <input name="password" required type="password" placeholder="Password" class="w-full mb-4 px-4 py-2 border rounded">
+    <button class="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">Daftar</button>
+    <p class="mt-4 text-sm text-center">Sudah punya akun? <a href="/login.html" class="text-blue-600">Login</a></p>
+  </form>
+</body>
+</html>
